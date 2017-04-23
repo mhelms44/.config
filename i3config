@@ -10,17 +10,28 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 #feh wallpaper script
-exec --no-startup-id feh --bg-fill /home/michael/Downloads/rifu.jpg
+exec --no-startup-id feh --bg-fill /home/michael/Downloads/wallpaper.png
 
-# Bind Firefox to Win+F
-bindsym $mod+f exec firefox
+# Start up volume icon
+exec volumeicon
+
+# Bind Firefox to Win+F and set GTK theme so SJWFox doesn't break with dark GTK theme
+bindsym $mod+f exec env GTK_THEME=macOS-Sierra-master firefox
 
 # No window border
 new_window pixel 0
 
-# Start xbindkeys
-exec --no-startup-id xbindkeys -p
+#Toggles a window border cuz sometimes I need it
+bindsym $mod+x border toggle
 
+#dunst notifications
+exec --no-startup-id dunst -config /home/michael/.config/dunst/dunstrc
+
+# Start xbindkeys
+#exec --no-startup-id xbindkeys -p
+
+# Bind i3lock script to Win+L
+bindsym $mod+l exec /home/michael/lock.sh
 
 set $mod Mod4
 
@@ -43,7 +54,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -58,7 +69,7 @@ bindsym $mod+d exec dmenu_run
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
-bindsym $mod+l focus up
+#bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
@@ -78,6 +89,12 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# Resizing windows by 10 in i3 using keyboard only
+bindsym $mod+Ctrl+Shift+Right resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+Shift+Up resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+Shift+Down resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+Shift+Left resize grow width 10 px or 10 ppt
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -171,3 +188,4 @@ bar {
 
 
 client.focused	#2d2d2d	#2d2d2d	#878787	#2d2d2d
+
